@@ -4,5 +4,5 @@
 
 git pull
 git add .
-git commit -m "Save on $(date '+%Y%m%D %H:%M:%S'). $1"
+git commit -m "Save on $(date '+%Y-%m-%d %H:%M:%S'). $1"
 git push
