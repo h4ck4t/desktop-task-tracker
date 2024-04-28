@@ -1,0 +1,10 @@
+[
+    {
+        "task": "make coffee",
+        "progress": 50
+    },
+    {
+        "task": "cook dinner",
+        "progress": 25
+    }
+]
