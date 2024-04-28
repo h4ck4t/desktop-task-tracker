@@ -1,3 +1,4 @@
+import datetime
 import json
 import os
 
@@ -21,17 +22,33 @@ if __name__ == "__main__":
     img = get_gradient_background(SCREEN_WIDTH, SCREEN_HEIGHT)
     d = ImageDraw.Draw(img)
     fnt = ImageFont.truetype('Consolas.ttf', FONT_SIZE)
+    y_count = 0
+
+    # Add date.
+    now = datetime.datetime.now()
+    text = f'Updated on {now.strftime("%Y-%m-%d %H:%M:%S")}.'
+    text_width = fnt.getlength(text)
+    text_height = FONT_SIZE
+    x = (SCREEN_WIDTH - text_width) / 2
+    d.text(
+        (x, text_height * y_count),
+        text,
+        font=fnt,
+        fill=(255, 242, 176)
+    )
+    y_count += 2
 
     # Add text.
     tasks.sort(key=lambda x: x['task'])
-    for i, task in enumerate(tasks):
+    for task in tasks:
         text = ""
         text += f"{task['task']} [{task['progress']}%]"
         text += (f", {task['ddl']}" if 'ddl' in task else "")
         text_width = fnt.getlength(text)
         text_height = FONT_SIZE
         x = (SCREEN_WIDTH - text_width) / 2
-        y = text_height * i
+        y = text_height * y_count
+        y_count += 1
         d.text(
             (x, y),
             text,
@@ -48,9 +65,9 @@ if __name__ == "__main__":
     set_wallpaper(file_path)
 
     # Delete image.
-    if os.path.exists(file_path):
-        os.remove(file_path)
-        print("File removed successfully.")
-    else:
-        print("File does not exist.")
+    # if os.path.exists(file_path):
+    #     os.remove(file_path)
+    #     print("File removed successfully.")
+    # else:
+    #     print("File does not exist.")
 
