@@ -25,7 +25,9 @@ if __name__ == "__main__":
     # Add text.
     tasks.sort(key=lambda x: x['task'])
     for i, task in enumerate(tasks):
-        text = f"{task['task']} [{task['progress']}%], {task['ddl']}"
+        text = ""
+        text += f"{task['task']} [{task['progress']}%]"
+        text += (f", {task['ddl']}" if 'ddl' in task else "")
         text_width = fnt.getlength(text)
         text_height = FONT_SIZE
         x = (SCREEN_WIDTH - text_width) / 2
@@ -46,9 +48,9 @@ if __name__ == "__main__":
     set_wallpaper(file_path)
 
     # Delete image.
-    # if os.path.exists(file_path):
-    #     os.remove(file_path)
-    #     print("File removed successfully.")
-    # else:
-    #     print("File does not exist.")
+    if os.path.exists(file_path):
+        os.remove(file_path)
+        print("File removed successfully.")
+    else:
+        print("File does not exist.")
 
