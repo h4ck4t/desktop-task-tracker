@@ -10,7 +10,7 @@ from set_wallpaper import set_wallpaper
 
 # Init constants
 SCREEN_WIDTH, SCREEN_HEIGHT = get_screen_resolution()
-FILE = 'image.png'
+PATH = os.path.expanduser('~/wallpaper.png')
 FONT_SIZE = 36
 
 if __name__ == "__main__":
@@ -57,17 +57,9 @@ if __name__ == "__main__":
         )
 
     # Save image.
-    img.save(FILE)
-    file_path = os.path.abspath(FILE)
-    print(file_path)
+    img.save(PATH)
+    print(PATH)
 
     # Set wallpaper for Windows.
-    set_wallpaper(file_path)
-
-    # Delete image.
-    # if os.path.exists(file_path):
-    #     os.remove(file_path)
-    #     print("File removed successfully.")
-    # else:
-    #     print("File does not exist.")
+    set_wallpaper(PATH)
 
